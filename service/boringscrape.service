@@ -1,0 +1,10 @@
+[Unit]
+Description=BoringReport Scraper
+
+[Service]
+Type=forking
+ExecStart=/etc/startup/boringscrape/boringscrape.sh
+WorkingDirectory=/home/ubuntu/scraper/
+
+[Install]
+WantedBy=multi-user.target

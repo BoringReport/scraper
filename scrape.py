@@ -14,5 +14,5 @@ for link in fox_links:
 
 # dm.save_meta(meta)
 
-dm.download(meta, 50)
+dm.download(meta, 1000)
 dm.save_meta(meta)
