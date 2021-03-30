@@ -17,12 +17,14 @@ while True:
         print(sys.exc_info())
 
     for link in cnn_links:
-        dm.add_article(meta, "CNN", link)
+        loc, lastmod = link
+        dm.add_article(meta, "CNN", loc, lastmod)
 
     for link in fox_links:
-        dm.add_article(meta, "FOX", link)
+        loc, lastmod = link
+        dm.add_article(meta, "FOX", loc, lastmod)
 
-    dm.download(meta, 1000)
+    dm.download(meta, limit=1000, if_in_last_n_days=3)
     dm.save_meta(meta)
 
     time.sleep(60)

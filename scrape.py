@@ -3,16 +3,23 @@ from datamanager import Sitemap
 
 meta = dm.load_meta()
 
-cnn_links = dm.get_links(Sitemap.CNN)
-fox_links = dm.get_links(Sitemap.FOX)
+cnn_links = []
+fox_links = []
+
+try:
+    cnn_links = dm.get_links(Sitemap.CNN)
+    fox_links = dm.get_links(Sitemap.FOX)
+except:
+    print ('failed to get links')
+    print(sys.exc_info())
 
 for link in cnn_links:
-    dm.add_article(meta, "CNN", link)
+    loc, lastmod = link
+    dm.add_article(meta, "CNN", loc, lastmod)
 
 for link in fox_links:
-    dm.add_article(meta, "FOX", link)
+    loc, lastmod = link
+    dm.add_article(meta, "FOX", loc, lastmod)
 
-# dm.save_meta(meta)
-
-dm.download(meta, 1000)
+dm.download(meta, limit=1000, if_in_last_n_days=3)
 dm.save_meta(meta)
